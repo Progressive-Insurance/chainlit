@@ -25,7 +25,7 @@ importers:
         version: 18.2.0(react@18.2.0)
       recoil:
         specifier: ^0.7.7
-        version: 0.7.7(react-dom@18.2.0)(react@18.2.0)
+        version: 0.7.7(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       socket.io-client:
         specifier: ^4.7.2
         version: 4.7.2
@@ -44,7 +44,7 @@ importers:
         version: 5.17.0
       '@testing-library/react':
         specifier: ^14.0.0
-        version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
+        version: 14.0.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@types/lodash':
         specifier: ^4.14.199
         version: 4.14.199
@@ -53,10 +53,10 @@ importers:
         version: 9.0.3
       '@vitejs/plugin-react':
         specifier: ^4.0.4
-        version: 4.0.4(vite@4.4.9)
+        version: 4.0.4(vite@4.5.5(@types/node@20.9.0))
       '@vitejs/plugin-react-swc':
         specifier: ^3.3.2
-        version: 3.3.2(vite@4.4.9)
+        version: 3.3.2(vite@4.5.5(@types/node@20.9.0))
       jsdom:
         specifier: ^22.1.0
         version: 22.1.0
@@ -65,16 +65,16 @@ importers:
         version: 2.6.2
       tsup:
         specifier: ^7.2.0
-        version: 7.2.0(@swc/core@1.3.86)(typescript@5.2.2)
+        version: 7.2.0(@swc/core@1.3.86)(postcss@8.4.31)(typescript@5.2.2)
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
       vite:
         specifier: ^4.4.9
-        version: 4.4.9(@types/node@20.9.0)
+        version: 4.5.5(@types/node@20.9.0)
       vite-tsconfig-paths:
         specifier: ^4.2.0
-        version: 4.2.0(typescript@5.2.2)(vite@4.4.9)
+        version: 4.2.0(typescript@5.2.2)(vite@4.5.5(@types/node@20.9.0))
       vitest:
         specifier: ^0.34.4
         version: 0.34.4(jsdom@22.1.0)
@@ -548,6 +548,7 @@ packages:
 
   abab@2.0.6:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==}
+    deprecated: Use your platform's native atob() and btoa() methods instead
 
   acorn-walk@8.3.0:
     resolution: {integrity: sha512-FS7hV565M5l1R08MXqo8odwMTB02C2UqzB17RVgu9EyuYFBqJZ3/ZY97sQD5FewVu1UyDFc1yztUDrAwT0EypA==}
@@ -768,6 +769,7 @@ packages:
   domexception@4.0.0:
     resolution: {integrity: sha512-A2is4PLG+eeSfoTMA95/s4pvAoSo2mKtiM5jlHkAVewmiO8ISFTFKZjH7UAM1Atli/OT/7JHOrJRJiMKUZKYBw==}
     engines: {node: '>=12'}
+    deprecated: Use your platform's native DOMException instead
 
   electron-to-chromium@1.4.585:
     resolution: {integrity: sha512-B4yBlX0azdA3rVMxpYwLQfDpdwOgcnLCkpvSOd68iFmeedo+WYjaBJS3/W58LVD8CB2nf+o7C4K9xz1l09RkWg==}
@@ -863,6 +865,7 @@ packages:
 
   glob@7.1.6:
     resolution: {integrity: sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==}
+    deprecated: Glob versions prior to v9 are no longer supported
 
   globals@11.12.0:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
@@ -944,6 +947,7 @@ packages:
 
   inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
+    deprecated: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
 
   inherits@2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
@@ -1585,8 +1589,8 @@ packages:
       vite:
         optional: true
 
-  vite@4.4.9:
-    resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
+  vite@4.5.5:
+    resolution: {integrity: sha512-ifW3Lb2sMdX+WU91s3R0FyQlAyLxOzCSCP37ujw0+r5POeHPwe6udWVIElKQq8gk3t7b8rkmvqC6IHBpCff4GQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -2075,7 +2079,7 @@ snapshots:
       lodash: 4.17.21
       redent: 3.0.0
 
-  '@testing-library/react@14.0.0(react-dom@18.2.0)(react@18.2.0)':
+  '@testing-library/react@14.0.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.23.2
       '@testing-library/dom': 9.3.3
@@ -2142,20 +2146,20 @@ snapshots:
     dependencies:
       '@types/yargs-parser': 21.0.3
 
-  '@vitejs/plugin-react-swc@3.3.2(vite@4.4.9)':
+  '@vitejs/plugin-react-swc@3.3.2(vite@4.5.5(@types/node@20.9.0))':
     dependencies:
       '@swc/core': 1.3.86
-      vite: 4.4.9(@types/node@20.9.0)
+      vite: 4.5.5(@types/node@20.9.0)
     transitivePeerDependencies:
       - '@swc/helpers'
 
-  '@vitejs/plugin-react@4.0.4(vite@4.4.9)':
+  '@vitejs/plugin-react@4.0.4(vite@4.5.5(@types/node@20.9.0))':
     dependencies:
       '@babel/core': 7.23.3
       '@babel/plugin-transform-react-jsx-self': 7.23.3(@babel/core@7.23.3)
       '@babel/plugin-transform-react-jsx-source': 7.23.3(@babel/core@7.23.3)
       react-refresh: 0.14.0
-      vite: 4.4.9(@types/node@20.9.0)
+      vite: 4.5.5(@types/node@20.9.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -2945,10 +2949,12 @@ snapshots:
       mlly: 1.4.2
       pathe: 1.1.1
 
-  postcss-load-config@4.0.1:
+  postcss-load-config@4.0.1(postcss@8.4.31):
     dependencies:
       lilconfig: 2.1.0
       yaml: 2.3.4
+    optionalDependencies:
+      postcss: 8.4.31
 
   postcss@8.4.31:
     dependencies:
@@ -2996,10 +3002,11 @@ snapshots:
     dependencies:
       picomatch: 2.3.1
 
-  recoil@0.7.7(react-dom@18.2.0)(react@18.2.0):
+  recoil@0.7.7(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       hamt_plus: 1.0.2
       react: 18.2.0
+    optionalDependencies:
       react-dom: 18.2.0(react@18.2.0)
 
   redent@3.0.0:
@@ -3186,14 +3193,13 @@ snapshots:
   ts-interface-checker@0.1.13: {}
 
   tsconfck@2.1.2(typescript@5.2.2):
-    dependencies:
+    optionalDependencies:
       typescript: 5.2.2
 
   tslib@2.6.2: {}
 
-  tsup@7.2.0(@swc/core@1.3.86)(typescript@5.2.2):
+  tsup@7.2.0(@swc/core@1.3.86)(postcss@8.4.31)(typescript@5.2.2):
     dependencies:
-      '@swc/core': 1.3.86
       bundle-require: 4.0.2(esbuild@0.18.20)
       cac: 6.7.14
       chokidar: 3.5.3
@@ -3202,12 +3208,15 @@ snapshots:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss-load-config: 4.0.1
+      postcss-load-config: 4.0.1(postcss@8.4.31)
       resolve-from: 5.0.0
       rollup: 3.29.4
       source-map: 0.8.0-beta.0
       sucrase: 3.34.0
       tree-kill: 1.2.2
+    optionalDependencies:
+      '@swc/core': 1.3.86
+      postcss: 8.4.31
       typescript: 5.2.2
     transitivePeerDependencies:
       - supports-color
@@ -3247,7 +3256,7 @@ snapshots:
       mlly: 1.4.2
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.4.9(@types/node@20.9.0)
+      vite: 4.5.5(@types/node@20.9.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -3258,23 +3267,24 @@ snapshots:
       - supports-color
       - terser
 
-  vite-tsconfig-paths@4.2.0(typescript@5.2.2)(vite@4.4.9):
+  vite-tsconfig-paths@4.2.0(typescript@5.2.2)(vite@4.5.5(@types/node@20.9.0)):
     dependencies:
       debug: 4.3.4
       globrex: 0.1.2
       tsconfck: 2.1.2(typescript@5.2.2)
-      vite: 4.4.9(@types/node@20.9.0)
+    optionalDependencies:
+      vite: 4.5.5(@types/node@20.9.0)
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  vite@4.4.9(@types/node@20.9.0):
+  vite@4.5.5(@types/node@20.9.0):
     dependencies:
-      '@types/node': 20.9.0
       esbuild: 0.18.20
       postcss: 8.4.31
       rollup: 3.29.4
     optionalDependencies:
+      '@types/node': 20.9.0
       fsevents: 2.3.3
 
   vitest@0.34.4(jsdom@22.1.0):
@@ -3292,7 +3302,6 @@ snapshots:
       cac: 6.7.14
       chai: 4.3.10
       debug: 4.3.4
-      jsdom: 22.1.0
       local-pkg: 0.4.3
       magic-string: 0.30.5
       pathe: 1.1.1
@@ -3301,9 +3310,11 @@ snapshots:
       strip-literal: 1.3.0
       tinybench: 2.5.1
       tinypool: 0.7.0
-      vite: 4.4.9(@types/node@20.9.0)
+      vite: 4.5.5(@types/node@20.9.0)
       vite-node: 0.34.4(@types/node@20.9.0)
       why-is-node-running: 2.2.2
+    optionalDependencies:
+      jsdom: 22.1.0
     transitivePeerDependencies:
       - less
       - lightningcss
