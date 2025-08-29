@@ -1,0 +1,2 @@
+export declare const transform: (code: string) => string;
+export declare const normalizeCode: (code: string) => string;
