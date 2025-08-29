@@ -17,6 +17,7 @@ import {
   chatSettingsInputsState,
   chatSettingsValueState,
   commandsState,
+  configState,
   currentThreadIdState,
   elementState,
   firstUserInteraction,
@@ -80,6 +81,8 @@ const useChatSession = () => {
   const setChatSettingsInputs = useSetRecoilState(chatSettingsInputsState);
   const setTokenCount = useSetRecoilState(tokenCountState);
   const [chatProfile, setChatProfile] = useRecoilState(chatProfileState);
+  // Lazy import to avoid circular import at module top (configState defined in state.ts)
+  const setConfig = useSetRecoilState(configState);
   const idToResume = useRecoilValue(threadIdToResumeState);
   const setThreadResumeError = useSetRecoilState(resumeThreadErrorState);
 
@@ -457,8 +460,20 @@ const useChatSession = () => {
             break;
         }
       });
+
+      // Dynamic chat profile change initiated server-side (e.g. during on_chat_start)
+      socket.on('chat_profile_changed', (newProfile: string) => {
+        // Update local state only if different to avoid loops.
+        // SWR key in useConfig depends on chatProfile, so this triggers refetch automatically.
+        setChatProfile((prev) => (prev === newProfile ? prev : newProfile));
+      });
+
+      // Generic refresh trigger (e.g. user_session.set('refresh_project_settings', True))
+      socket.on('refresh_settings', () => {
+        setConfig(undefined); // keep explicit clear for manual refresh cases
+      });
     },
-    [setSession, sessionId, idToResume, chatProfile]
+    [setSession, sessionId, idToResume, chatProfile, setChatProfile, setConfig]
   );
 
   const connect = useCallback(debounce(_connect, 200), [_connect]);

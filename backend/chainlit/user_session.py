@@ -1,3 +1,4 @@
+import asyncio
 from typing import Callable, Dict, Generic, Optional, TypeVar
 
 from chainlit.context import context
@@ -42,6 +43,38 @@ class UserSession:
 
         user_session = user_sessions[context.session.id]
         user_session[key] = value
+
+        # Special handling for chat_profile so that dynamic profile selection inside
+        # on_chat_start can update the active session and notify the UI to refresh
+        # project settings (starters, overrides, etc.).
+        if key == "chat_profile":
+            try:
+                # Keep session object in sync for persistence & tagging.
+                context.session.chat_profile = value  # type: ignore[attr-defined]
+                # Emit an event to the client so it can refetch /project/settings.
+                if hasattr(context.session, "emit"):
+                    emit_res = context.session.emit(  # type: ignore[attr-defined]
+                        "chat_profile_changed", value
+                    )
+                    if asyncio.iscoroutine(
+                        emit_res
+                    ):  # safety: emit may return a coroutine
+                        asyncio.create_task(emit_res)
+            except Exception:
+                # Silently ignore - failure to notify UI should not break user code.
+                pass
+
+        # Generic project settings refresh trigger.
+        if key == "refresh_project_settings":
+            try:
+                if hasattr(context.session, "emit"):
+                    emit_res = context.session.emit(  # type: ignore[attr-defined]
+                        "refresh_settings", {}
+                    )
+                    if asyncio.iscoroutine(emit_res):
+                        asyncio.create_task(emit_res)
+            except Exception:
+                pass
 
     def create_accessor(
         self, key: str, default: T, *, apply_fn: Optional[Callable[[T], T]] = None

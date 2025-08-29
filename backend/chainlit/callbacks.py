@@ -15,6 +15,7 @@ from chainlit.oauth_providers import get_configured_oauth_providers
 from chainlit.step import Step, step
 from chainlit.types import ChatProfile, Starter, ThreadDict
 from chainlit.user import User
+from chainlit.user_session import user_session
 from chainlit.utils import wrap_user_function
 
 
@@ -431,3 +432,16 @@ def on_feedback(func: Callable) -> Callable:
     """
     config.code.on_feedback = wrap_user_function(func)
     return func
+
+
+def refresh_project_settings():
+    """Trigger a client-side refetch of /project/settings without modifying the current chat profile.
+
+    Use this after mutating dynamic data (e.g. starters, profile overrides) stored in `cl.user_session`.
+    Equivalent to: `cl.user_session.set("refresh_project_settings", True)`.
+    Silently no-ops if there is no active websocket session.
+    """
+    try:
+        user_session.set("refresh_project_settings", True)
+    except Exception:
+        pass
